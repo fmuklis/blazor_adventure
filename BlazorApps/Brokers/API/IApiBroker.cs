@@ -2,7 +2,7 @@
 
 namespace BlazorApps.Brokers.API
 {
-    public interface IApiBroker
+    public partial interface IApiBroker
     {
         
     }

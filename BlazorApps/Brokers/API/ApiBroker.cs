@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 namespace BlazorApps.Brokers.API
 {
-    public class ApiBroker : IApiBroker
+    public partial class ApiBroker : IApiBroker
     {
         private readonly IRESTFulApiFactoryClient _apiClient;
 
