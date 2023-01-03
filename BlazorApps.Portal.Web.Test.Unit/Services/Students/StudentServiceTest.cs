@@ -1,12 +1,14 @@
 ﻿using BlazorApps.Brokers.API;
 using BlazorApps.Brokers.Logging;
 using BlazorApps.Models.Students;
+using BlazorApps.Models.Students.Exceptions;
 using BlazorApps.Services.Students;
 using Castle.Core.Resource;
 using Moq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using Tynamix.ObjectFiller;
@@ -35,5 +37,11 @@ public partial class StudentServiceTest
             .OnType<DateTimeOffset>().Use(DateTimeOffset.UtcNow);
 
         return filler;
+    }
+
+    private Expression<Func<Exception, bool>> SameExceptionAs(Exception expectedException)
+    {
+        return actualException => actualException.Message == expectedException.Message
+            && actualException.InnerException.Message == expectedException.InnerException.Message;
     }
 }

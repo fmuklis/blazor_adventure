@@ -1,0 +1,14 @@
+﻿// ---------------------------------------------------------------
+// Copyright (c) Coalition of the Good-Hearted Engineers
+// FREE TO USE AS LONG AS SOFTWARE FUNDS ARE DONATED TO THE POOR
+// ---------------------------------------------------------------
+
+using System;
+
+namespace BlazorApps.Models.Students.Exceptions;
+
+public class StudentValidationException : Exception
+{
+	public StudentValidationException(Exception innerException)
+		: base("Student validation error occured, try again", innerException) {	}
+}
