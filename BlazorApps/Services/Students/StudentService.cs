@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace BlazorApps.Services.Students;
 
-public class StudentService : IStudentService
+public partial class StudentService : IStudentService
 {
     private readonly IApiBroker _apiBroker;
     private readonly ILoggingBroker _loggingBroker;
@@ -21,6 +21,11 @@ public class StudentService : IStudentService
         _loggingBroker = loggingBroker;
     }
 
-    public async ValueTask<Student> RegisterStudentAsync(Student student) =>
-        await _apiBroker.PostStudentAsync(student);
+    public ValueTask<Student> RegisterStudentAsync(Student student) =>
+        TryCatch(async () =>
+        {
+            ValidateStudent(student);
+
+            return await _apiBroker.PostStudentAsync(student);
+        });
 }
